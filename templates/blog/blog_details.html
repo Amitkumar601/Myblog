@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}blog{% endblock %}
+{% block body %}
+
+<div class="container mt-5 ">
+    <div class="border p-5 shadow">
+      <h1>{{ blog.title }}</h1>
+      <br>
+      <p>{{ blog.date }}</p>
+      <br>
+      <p class=" text-justify ">{{ blog.desc }}
+         </p>
+         <br>
+          <!-- <footer class="blockquote-footer">Authur <cite title="Source Title">Amit Singh</cite></footer> -->
+          <h5><small>Author -</small>  <i>{{blog.user_id.first_name}}&nbsp{{blog.user_id.last_name}}</i></h5>
+          <br>
+          
+          <div class="d-grid gap-2 d-md-block ">
+            <a class="btn btn-success" href="{% url 'blog' %}" type="button">Back</a>
+
+            {% if user.is_authenticated %}
+
+            {% if user.id == blog.user_id.id %}
+           <a class="btn btn-primary" href="{% url 'edit_post' blog.id %}" type="button">Edit</a>
+           <a class="btn btn-danger" href="{% url 'delete_post' blog.id %}" type="button">Delete</a>
+            
+           
+
+         </div>
+           {% endif %}
+           {% endif %}
+          
+
+
+
+
+    </div>
+  </div>
+
+{% endblock %}

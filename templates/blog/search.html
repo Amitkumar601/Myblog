@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Search{% endblock %}
+{% block body %}
+
+<div class="container">
+    <div class="bg-primary text-light text-center p-5 mt-3">
+        <h1>Search Result</h1>
+    </div>
+</div>
+
+
+<div class="container mt-5">
+<div class="row">
+  {% for blog in blogs %}
+  
+    <div class="col-6   mb-3">
+          <div class="card  shadow ">
+             
+              <div class="card-body">
+                  <h2 class="card-title">{{ blog.title }}</h2>
+                  <small class="m-1"> {{ blog.date }}</small>
+                  <p class="card-text">{{ blog.desc }}</p>
+                  <br>
+                  <footer class="blockquote-footer">Author &nbsp; -&nbsp;<cite title="Source Title">{{blog.user_id.first_name}}&nbsp{{blog.user_id.last_name}}</cite></footer>
+                  <br>
+
+                  
+                  <a type="button" href="{% url 'blog_details' blog.id %}" class="btn btn-primary btn-sm">Read more</a>
+              </div>
+             
+          </div>
+       </div>
+  {% endfor %} 
+  <br>
+  <br>
+  <br>
+  <br>
+  <br> 
+    </div>
+</div>
+
+
+       
+
+{% endblock %}
